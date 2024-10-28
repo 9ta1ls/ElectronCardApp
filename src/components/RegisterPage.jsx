@@ -19,7 +19,7 @@ function RegisterPage() {
       if (response.ok) {
         window.location.href = '/login';
       } else {
-        setError("Користувач з таким ім'ям вже існує");
+        setError('User with this username already exists');
         setUsername('');
         setPassword('');
       }
@@ -31,7 +31,7 @@ function RegisterPage() {
   return (
     <div>
       <form>
-        <label>Логін:</label>
+        <label>Username:</label>
         <input 
           type="text" 
           value={username} 
@@ -39,7 +39,7 @@ function RegisterPage() {
           required 
         />
 
-        <label>Пароль:</label>
+        <label>Password:</label>
         <input 
           type="password" 
           value={password} 
@@ -48,12 +48,12 @@ function RegisterPage() {
         />
         
         {error && <h4 style={{ color: '#cf1212' }}>{error}</h4>}
-        <button type="button" onClick={register}>Зареєструватися</button>
+        <button type="button" onClick={register}>Register</button>
       </form>
 
-      <p>Вже маєте аккаунт?</p>
+      <p>Already have an account?</p>
       <Link to="/login">
-        <button type="button">Перейти на сторінку логіну</button>
+        <button type="button">Go to Login Page</button>
       </Link>
     </div>
   );

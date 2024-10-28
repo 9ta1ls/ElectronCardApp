@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import DecksPage from './components/DecksPage';
+import CardsPage from './components/CardsPage';
 
 function App() {
 
@@ -15,28 +16,26 @@ function App() {
 
   return (
     <Router>
-      <Routes>
-        {/* Якщо користувач не аутентифікований */}
-        {!authenticated ? (
-          <>
-            {/* Перенаправлення на логін або реєстрацію */}
-            <Route path="/login" element={<LoginPage setAuthenticated={setAuthenticated} />} />
-            <Route path="/register" element={<RegisterPage />} />
-            
-            {/* Якщо користувач намагається зайти на будь-який інший шлях */}
-            <Route path="*" element={<Navigate to="/register" replace />} />
-          </>
-        ) : (
-          <>
-            {/* Якщо користувач аутентифікований */}
-            <Route path="/decks" element={<DecksPage  setAuthenticated={setAuthenticated} />} />
-            
-            {/* Перенаправлення на колоди, якщо користувач намагається зайти на логін */}
-            <Route path="*" element={<Navigate to="/decks" replace />} />
-          </>
-        )}
-      </Routes>
-    </Router>
+    <Routes>
+      {/* Якщо користувач не аутентифікований */}
+      {!authenticated ? (
+        <>
+          <Route path="/login" element={<LoginPage setAuthenticated={setAuthenticated} />} />
+          <Route path="/register" element={<RegisterPage />} />
+          {/* Якщо користувач намагається зайти на будь-який інший шлях */}
+          <Route path="*" element={<Navigate to="/register" replace />} />
+        </>
+      ) : (
+        <>
+          <Route path="/decks" element={<DecksPage setAuthenticated={setAuthenticated} />} />
+          <Route path="/cards/:deckId" element={<CardsPage setAuthenticated={setAuthenticated} />} />
+          {/* Перенаправлення на /decks, якщо користувач намагається зайти на невизначений шлях */}
+          <Route path="*" element={<Navigate to="/decks" replace />} />
+        </>
+      )}
+    </Routes>
+  </Router>
+
   );
 }
 

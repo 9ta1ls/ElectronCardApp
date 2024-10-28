@@ -1,0 +1,67 @@
+
+
+
+.deck-table {
+    margin-top: 15px;
+    width: 100%;
+    border-spacing: 0 12px;
+    border-collapse: separate;
+  }
+  
+  /* Стилі для заголовків */
+  .deck-table thead tr {
+    background-color: #f2f2f2;
+    margin-bottom: 0px;
+  }
+  
+  .deck-table th {
+    padding: 0px;
+    text-align: left;
+    background-color: #192135;
+  }
+  
+  /* Стилі для тіла таблиці */
+  .deck-table tbody tr {
+    background-color: #2d3a57;
+    border-radius: 8px;
+    margin-bottom: 25px;
+  }
+  
+  /* Додаємо відступ між рядками */
+  .deck-table tbody tr:not(:last-child) {
+    margin-bottom: 25px;
+  }
+  
+  /* Заокруглення для першої і останньої комірки в рядку */
+  .deck-table tbody td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  
+  .deck-table tbody td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .deck-table td {
+    padding: 15px;
+  }
+  
+  /* Ширина колонок */
+  .deck-table th:nth-child(1),
+  .deck-table td:nth-child(1) {
+    width: 60%;
+  }
+  
+  .deck-table th:nth-child(2),
+  .deck-table td:nth-child(2),
+  .deck-table th:nth-child(3),
+  .deck-table td:nth-child(3) {
+    width: 20%;
+    text-align: center;
+  }
+  
+  .icon-button {
+    cursor: pointer;
+    margin: 0 5px;
+  }

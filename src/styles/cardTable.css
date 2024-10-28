@@ -1,0 +1,66 @@
+.card-table {
+    margin-top: 15px;
+    width: 100%;
+    border-spacing: 0 12px;
+    border-collapse: separate;
+  }
+  
+  /* Стилі для заголовків */
+  .card-table thead tr {
+    background-color: #f2f2f2;
+  }
+  
+  /* Стилі для тіла таблиці */
+  .card-table tbody tr {
+    background-color: #202938;
+    border-radius: 8px;
+  }
+  
+  /* Заокруглення для першої і останньої комірки в рядку */
+  .card-table tbody td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  
+  .card-table tbody td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+  
+  .card-table td {
+    padding: 20px;
+    color: white;
+  }
+  
+  /* Ширина колонок */
+  .card-table th:nth-child(1),
+  .card-table td:nth-child(1) {
+    width: 90%;
+  }
+  
+  .card-table th:nth-child(2),
+  .card-table td:nth-child(2) {
+    width: 10%;
+  }
+
+  
+  .icon-button {
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  
+  .cardValues {
+    display: flex;
+    flex-direction: column; /* Розміщує питання і відповідь вертикально */
+    gap: 5px; /* Відстань між питанням та відповіддю */
+  }
+  
+  .cardValues .question {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .cardValues .answer {
+    color: #b1b1b1; /* Світліший текст для відповіді */
+  }
+  

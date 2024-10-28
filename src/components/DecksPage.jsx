@@ -1,91 +1,113 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import DeckTable from './DeckTable';
+import Modal from './Modal';
+import '../styles/decksPage.css';
 
 function DecksPage({ setAuthenticated }) {
   const [decks, setDecks] = useState([]);
-  const [deckName, setDeckName] = useState(''); // Зберігаємо назву колоди
+  const [deckName, setDeckName] = useState(''); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDeckId, setSelectedDeckId] = useState(null);
+
+  const fetchDecks = async () => {
+    try {
+      setSelectedDeckId(null);
+      setIsModalOpen(false);
+      const response = await fetch('server/decks');
+      const data = await response.json();
+      setDecks(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchDecks = async () => {
-      try {
-        const response = await fetch('server/decks');
-        const data = await response.json();
-        setDecks(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchDecks();
   }, []);
 
-  const logout = async() =>{
+  const logout = async () => {
     await setAuthenticated(false);
     localStorage.removeItem('authenticated');
     document.cookie = 'access-token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/'; 
   };
 
-    const handleSubmit = async (e) => {
-      console.log(deckName); // Тепер ви можете зберігати або обробляти deckName
-      try {
-        const response = await fetch('server/decks', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ deckname: deckName }),
-        });
+  const handleSubmit = async (e) => { 
+    e.preventDefault();
+    try {
+      const response = await fetch('server/decks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ deckname: deckName }),
+      });
     
-        if (response.ok) {
-          console.log('Deck added');
-        } else {
-          console.error('Failed to add deck');
-        }
-      } catch (error) {
-        console.error('Error:', error);
+      if (response.ok) {
+        await fetchDecks();
+        console.log('Deck added');
+      } else {
+        console.error('Failed to add deck');
       }
-      setDeckName(''); 
-    };
+    } catch (error) {
+      console.error('Error:', error);
+    }
+    setDeckName('');
+  };
+
+  const showModalWindow = (id) => {
+    setSelectedDeckId(id);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+
+  const handleDelete = async () => {
+    const deckId = selectedDeckId;
+    try {
+      const response = await fetch(`server/decks/${deckId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      });
+    
+      if (response.ok) {
+        fetchDecks();
+        console.log('Deck deleted');
+      } else {
+        console.error('Failed to delete deck');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
-    <div>
-      <h1>Мої Колоди</h1>
-      <button id="logoutButton" onClick={logout}>Вийти з аккаунту</button>
+    <div className="decks-page">
+      <h1>My Decks</h1>
+      <button id="logoutButton" onClick={logout}>Log out</button>
 
-      <table id="decksTable">
-        <thead>
-          <tr>
-            <th>№</th>
-            <th>Назва</th>
-            <th>Кількість карток</th>
-            <th>Операції</th>
-          </tr>
-        </thead>
-        <tbody>
-          {decks.map((deck, index) => (
-            <tr key={deck._id}>
-              <td>{index + 1}</td>
-              <td>{deck.name}</td>
-              <td>{deck.cards.length || 0}</td>
-              <td>
-                <button>Змінити</button>
-                <button>Видалити</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {isModalOpen && <Modal handleDelete={handleDelete} closeModal={closeModal} />}
 
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          placeholder="Введіть назву колоди" 
-          value={deckName} 
-          onChange={(e) => setDeckName(e.target.value)} // Оновлюємо значення стану при введенні
-          required 
-        />
-        <button type="submit">Додати Колоду</button>
-      </form>
-    </div>
+      <div className="content-container">
+        <form onSubmit={handleSubmit} className="deck-form">
+          <input 
+            type="text" 
+            placeholder="Enter deck name" 
+            value={deckName} 
+            onChange={(e) => setDeckName(e.target.value)} 
+            required 
+          />
+          <button type="submit">Add Deck</button>
+        </form>
+
+        <DeckTable
+            decks={decks}
+            setSelectedDeckId={setSelectedDeckId}
+            setIsModalOpen={setIsModalOpen}
+          />
+      </div>
+  </div>
+
   );
 }
 

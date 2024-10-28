@@ -17,12 +17,12 @@ function LoginPage({ setAuthenticated }) {
       });
 
       if (response.ok) {
-        console.log("settingAuth");
+        console.log('settingAuth');
         await setAuthenticated(true);
         localStorage.setItem('authenticated', 'true');
         window.location.href = '/decks';
       } else {
-        setError("Неправильний логін або пароль");
+        setError('Incorrect username or password');
         setUsername('');
         setPassword('');
       }
@@ -34,7 +34,7 @@ function LoginPage({ setAuthenticated }) {
   return (
     <div>
       <form>
-        <label>Логін:</label>
+        <label>Username:</label>
         <input 
           type="text" 
           value={username} 
@@ -42,7 +42,7 @@ function LoginPage({ setAuthenticated }) {
           required 
         />
 
-        <label>Пароль:</label>
+        <label>Password:</label>
         <input 
           type="password" 
           value={password} 
@@ -51,11 +51,11 @@ function LoginPage({ setAuthenticated }) {
         />
 
         {error && <h4 style={{ color: '#cf1212' }}>{error}</h4>}
-        <button type="button" onClick={login}>Увійти</button>
+        <button type="button" onClick={login}>Log In</button>
 
-        <p>Ще не маєте аккаунту?</p>
+        <p>Don't have an account yet?</p>
         <Link to="/register">
-          <button type="button">Перейти на сторінку реєстрації</button>
+          <button type="button">Go to Registration Page</button>
         </Link>
       </form>
     </div>
