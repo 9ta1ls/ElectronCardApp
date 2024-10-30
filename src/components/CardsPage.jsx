@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import CardTable from './CardTable'; // Створіть цей компонент подібно до DeckTable
+import CardTable from './CardTable'; 
 import '../styles/cardsPage.css';
+import backIcon from '../icons/back.png';
 
 function CardsPage() {
   const deckId = useParams().deckId;
@@ -51,7 +52,11 @@ function CardsPage() {
   return (
     <div className="cards-page">
       <Link to="/decks">
-        <button className="back-button">Back</button>
+        <img
+            className="back-button"
+            src={backIcon}
+            alt="Back"
+        />
       </Link>
       <h1>Deck {deckName}</h1>
 

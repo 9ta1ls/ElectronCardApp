@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/authPages.css';
 
 function RegisterPage() {
   const [username, setUsername] = useState('');
@@ -29,8 +30,8 @@ function RegisterPage() {
   };
 
   return (
-    <div>
-      <form>
+    <div className='auth-form-container'>
+      <form >
         <label>Username:</label>
         <input 
           type="text" 
@@ -47,14 +48,13 @@ function RegisterPage() {
           required 
         />
         
-        {error && <h4 style={{ color: '#cf1212' }}>{error}</h4>}
+        {error && <p style={{ color: '#cf1212' }}>{error}</p>}
         <button type="button" onClick={register}>Register</button>
+        <p>
+          <Link to="/login" className="link-text">Already have an account?</Link>
+        </p>
       </form>
-
-      <p>Already have an account?</p>
-      <Link to="/login">
-        <button type="button">Go to Login Page</button>
-      </Link>
+     
     </div>
   );
 }

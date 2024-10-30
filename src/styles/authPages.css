@@ -1,0 +1,50 @@
+.auth-form-container {
+    max-width: 400px; /* Задайте максимальну ширину */
+    margin: 15% auto; /* Центруйте контейнер */
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #242424; /* Темно-сірий контейнер */
+    color: white; /* Колір тексту */
+}
+
+.auth-form-container input {
+    width: 100%; /* Поля вводу займають всю ширину */
+    padding: 14px;
+    border-radius: 8px;
+    border: none; /* Без обводки */
+    margin-bottom: 10px; /* Відступ між полями */
+    margin-top: 10px;
+    background-color: #2A2A2A; /* Трохи світліший сірий для полів */
+    color: white; /* Колір тексту */
+    box-sizing: border-box;
+}
+
+.auth-form-container button {
+    width: 100%; /* Кнопки займають всю ширину */
+    padding: 14px;
+    background-color: #606C38; /* Оливковий колір для кнопок */
+    border: none; /* Без обводки */
+    border-radius: 8px;
+    color: white; /* Колір тексту кнопок */
+    cursor: pointer; /* Показує, що кнопка клікабельна */
+    box-sizing: border-box;
+    margin-top: 20px;
+}
+
+.auth-form-container button:hover {
+    background-color: #6B7B41; /* Світліший оливковий при наведенні */
+}
+
+.link-text {
+    color: #606C38; /* Оливковий для посилань */
+    text-decoration: none; /* Без підкреслення */
+}
+
+.link-text:hover {
+    text-decoration: underline; /* Підкреслення при наведенні */
+}
+
+.form-container p {
+    margin-top: 20px; /* Встановлює однаковий верхній відступ */
+    margin-bottom: 0px; /* Встановлює однаковий нижній відступ */
+}

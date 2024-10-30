@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/authPages.css';
 
 function LoginPage({ setAuthenticated }) {
   const [username, setUsername] = useState('');
@@ -32,7 +33,7 @@ function LoginPage({ setAuthenticated }) {
   };
 
   return (
-    <div>
+    <div className='auth-form-container'>
       <form>
         <label>Username:</label>
         <input 
@@ -50,13 +51,12 @@ function LoginPage({ setAuthenticated }) {
           required 
         />
 
-        {error && <h4 style={{ color: '#cf1212' }}>{error}</h4>}
+        {error && <p style={{ color: '#cf1212' }}>{error}</p>}
         <button type="button" onClick={login}>Log In</button>
 
-        <p>Don't have an account yet?</p>
-        <Link to="/register">
-          <button type="button">Go to Registration Page</button>
-        </Link>
+        <p>
+          <Link to="/register" className="link-text">Don't have an account yet?</Link>
+        </p>
       </form>
     </div>
   );

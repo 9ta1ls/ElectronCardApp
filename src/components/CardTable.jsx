@@ -20,12 +20,9 @@ function CardTable({ cards, handleDelete }) {
               </div>
             </td>
             <td>
-              <img
-                className="icon-button"
-                src={deleteIcon}
-                alt="Delete"
-                onClick={() => handleDelete(card._id)}
-              />
+              <span className="delete-text"  onClick={() => handleDelete(card._id)}>
+                  Delete
+              </span>
             </td>
           </tr>
         ))}

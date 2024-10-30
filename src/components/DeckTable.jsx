@@ -25,12 +25,9 @@ function DeckTable({ decks, setSelectedDeckId, setIsModalOpen }) {
             <td><Link to={`/cards/${deck._id}`}>{deck.name}</Link></td>
             <td>{deck.cards.length || 0}</td>
             <td>
-              <img
-                className="icon-button"
-                src={deleteIcon}
-                alt="Delete"
-                onClick={() => handleDeleteClick(deck._id)}
-              />
+              <span className="delete-text"  onClick={() => handleDelete(deck._id)}>
+                Delete
+              </span>
             </td>
           </tr>
         ))}

@@ -1,5 +1,6 @@
 .cards-page h1 {
   text-align: center;
+  margin-top: 5%;
 }
 
 .content-container {
@@ -7,7 +8,7 @@
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
-  background-color: #192135;
+  background-color: #242424; /* Темно-сірий контейнер */
 }
 
 .form-container {
@@ -18,7 +19,7 @@
 }
 
 .input-field {
-  background-color: #384152;
+  background-color: #2A2A2A; /* Трохи світліший сірий для полів */
   color: white;
   padding: 14px;
   font-size: 16px;
@@ -29,7 +30,7 @@
 }
 
 .form-container input {
-  background-color: #384152;
+  background-color: #2A2A2A; /* Трохи світліший сірий для полів */
   color: white;
   padding: 14px;
   font-size: 16px;
@@ -39,7 +40,7 @@
 }
 
 .form-container button {
-  background-color: #2563ea;
+  background-color: #606C38; /* Оливковий колір для кнопок */
   color: white;
   padding: 14px;
   font-size: 16px;
@@ -47,12 +48,10 @@
   border: none;
   cursor: pointer;
   margin-top: 10px;
-
 }
 
-
 .add-card-button {
-  background-color: #2563ea;
+  background-color: #606C38; /* Оливковий колір для кнопок */
   color: white;
   padding: 14px;
   font-size: 16px;
@@ -62,3 +61,19 @@
   cursor: pointer;
   box-sizing: border-box;
 }
+
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  max-width: 34px;
+  max-height: 34px;
+  cursor: pointer;
+  
+}
+
+
