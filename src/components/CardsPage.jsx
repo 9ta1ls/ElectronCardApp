@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import CardTable from './CardTable'; 
 import '../styles/cardsPage.css';
 import backIcon from '../icons/back.png';
+import useModal from './useModal';
+import Modal from './Modal';
 
 function CardsPage() {
   const deckId = useParams().deckId;
@@ -10,14 +12,16 @@ function CardsPage() {
   const [deckName, setDeckName] = useState('');
   const [cardAnswer, setCardAnswer] = useState('');
   const [cardQuestion, setCardQuestion] = useState('');
+  const { isModalOpen, selectedId, openModal, closeModal } = useModal();
 
   const fetchCards = async () => {
     try {
+      
       const response = await fetch(`/server/cards/${deckId}`);
       const data = await response.json();
       setCards(data.cards);
       setDeckName(data.name);
-      console.log('Fetched cards:', data.cards); 
+      closeModal();
     } catch (error) {
       console.error(error);
     }
@@ -49,8 +53,32 @@ function CardsPage() {
     setCardQuestion(''); 
   };
 
+  const handleDelete = async () => {
+    const cardId = selectedId;
+    try {
+      const response = await fetch(`/server/cards/${deckId}/${cardId}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      });
+    
+      if (response.ok) {
+        closeModal();
+        fetchCards();
+        console.log('Card deleted');
+      } else {
+        console.error('Failed to delete card');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
   return (
     <div className="cards-page">
+
+     {isModalOpen && <Modal handleDelete={handleDelete} closeModal={closeModal} />}
+
+
       <Link to="/decks">
         <img
             className="back-button"
@@ -82,8 +110,15 @@ function CardsPage() {
             <button type="submit" className="add-card-button">Add card</button>
           </form>
         </div>
-
-        <CardTable cards={cards} /> {/* Таблиця карток */}
+          {cards.length > 0 && (
+            <Link to={`/study/${deckId}`}>
+            <button className="add-card-button">Study</button>
+          </Link>
+          )}
+        <CardTable 
+          cards={cards} 
+          openModal={openModal}
+        />
       </div>
     </div>
   );

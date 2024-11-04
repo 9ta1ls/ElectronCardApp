@@ -1,14 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import deleteIcon from '../icons/bin.png';
 import '../styles/deckTable.css';
 import '../styles/icons.css';
 
-function DeckTable({ decks, setSelectedDeckId, setIsModalOpen }) {
-  const handleDeleteClick = (id) => {
-    setSelectedDeckId(id);
-    setIsModalOpen(true);
-  };
+function DeckTable({decks, openModal}) {
 
   return (
     <table className="deck-table">
@@ -25,7 +20,7 @@ function DeckTable({ decks, setSelectedDeckId, setIsModalOpen }) {
             <td><Link to={`/cards/${deck._id}`}>{deck.name}</Link></td>
             <td>{deck.cards.length || 0}</td>
             <td>
-              <span className="delete-text"  onClick={() => handleDelete(deck._id)}>
+              <span className="delete-text"  onClick={() => openModal(deck._id)}>
                 Delete
               </span>
             </td>

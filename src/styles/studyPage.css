@@ -1,0 +1,29 @@
+/* Забезпечує, що фоновий колір покриває весь екран без прокрутки */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.study-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw; /* Повна ширина екрану */
+  height: 100vh; /* Повна висота екрану */
+  background-color: #1a1a1a;
+  color: white;
+}
+
+.study-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Відстань між карткою та кнопками */
+  border-radius: 8px;
+  background-color: #242424;
+}

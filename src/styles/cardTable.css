@@ -1,5 +1,4 @@
 .card-table {
-  margin-top: 15px;
   width: 100%;
   border-spacing: 0 12px;
   border-collapse: separate;
@@ -60,7 +59,7 @@
 }
 
 .cardValues .answer {
-  color: #b1b1b1; /* Світліший текст для відповіді */
+  color: #888888; /* Світліший текст для відповіді */
 }
 
 .delete-text {

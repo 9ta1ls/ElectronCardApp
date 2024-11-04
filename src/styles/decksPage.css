@@ -51,6 +51,7 @@ body {
   border-radius: 8px;
   border-width: 0px;
   color: white;
+  cursor: pointer;
 }
 
 .deck-form button {
@@ -68,6 +69,13 @@ body {
   border-radius: 8px;
   border: none;
   cursor: pointer;
+}
+.deck-form button:hover {
+  background-color: #6b7b41; /* Світліший оливковий при наведенні */
+}
+
+.deck-form button :active {
+  background-color: #4a542c; /* Темніший оливковий при натисканні */
 }
 
 #logoutButton:hover {

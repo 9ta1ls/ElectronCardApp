@@ -1,10 +1,11 @@
 // CardTable.jsx
 import React from 'react';
-import deleteIcon from '../icons/bin.png';
 import '../styles/cardTable.css';
 import '../styles/icons.css';
 
-function CardTable({ cards, handleDelete }) {
+function CardTable({ cards, openModal }) {
+
+
   return (
     <table className="card-table">
       <thead>
@@ -20,7 +21,7 @@ function CardTable({ cards, handleDelete }) {
               </div>
             </td>
             <td>
-              <span className="delete-text"  onClick={() => handleDelete(card._id)}>
+              <span className="delete-text"   onClick={() => openModal(card._id)}>
                   Delete
               </span>
             </td>

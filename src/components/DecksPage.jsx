@@ -2,17 +2,15 @@ import React, { useState, useEffect } from 'react';
 import DeckTable from './DeckTable';
 import Modal from './Modal';
 import '../styles/decksPage.css';
+import useModal from './useModal'; 
 
 function DecksPage({ setAuthenticated }) {
   const [decks, setDecks] = useState([]);
   const [deckName, setDeckName] = useState(''); 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedDeckId, setSelectedDeckId] = useState(null);
+  const { isModalOpen, selectedId, openModal, closeModal } = useModal();
 
   const fetchDecks = async () => {
     try {
-      setSelectedDeckId(null);
-      setIsModalOpen(false);
       const response = await fetch('server/decks');
       const data = await response.json();
       setDecks(data);
@@ -52,18 +50,9 @@ function DecksPage({ setAuthenticated }) {
     setDeckName('');
   };
 
-  const showModalWindow = (id) => {
-    setSelectedDeckId(id);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
 
   const handleDelete = async () => {
-    const deckId = selectedDeckId;
+    const deckId = selectedId;
     try {
       const response = await fetch(`server/decks/${deckId}`, {
         method: 'DELETE',
@@ -71,6 +60,7 @@ function DecksPage({ setAuthenticated }) {
       });
     
       if (response.ok) {
+        closeModal();
         fetchDecks();
         console.log('Deck deleted');
       } else {
@@ -102,8 +92,7 @@ function DecksPage({ setAuthenticated }) {
 
         <DeckTable
             decks={decks}
-            setSelectedDeckId={setSelectedDeckId}
-            setIsModalOpen={setIsModalOpen}
+            openModal={openModal}
           />
       </div>
   </div>

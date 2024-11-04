@@ -1,0 +1,37 @@
+.feedback-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.feedback-button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+  color: white;
+  height: 45px; /* Задаємо однакову висоту для кнопок */
+  width: 100px;
+}
+
+.feedback-button.bad {
+  background-color: #d9534f; /* Червоний колір для Bad */
+}
+
+.feedback-button.good {
+  background-color: #f0ad4e; /* Жовтий колір для Good */
+}
+
+.feedback-button.awesome {
+  background-color: #5cb85c; /* Зелений колір для Awesome */
+}
+
+.feedback-button:hover {
+  opacity: 0.8; /* Зменшуємо непрозорість при наведенні */
+}
+
+.feedback-button:active {
+  opacity: 0.6; /* Зменшуємо непрозорість при натисканні */
+}
