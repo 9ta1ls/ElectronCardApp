@@ -14,7 +14,7 @@ function StudyPage() {
 
   const fetchCards = async () => {
     try {
-      const response = await fetch(`/server/cards/${deckId}`);
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/cards/${deckId}`);
       const data = await response.json();
       setCards(data.cards);
     } catch (error) {

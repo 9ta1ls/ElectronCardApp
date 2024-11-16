@@ -1,24 +1,26 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/authPages.css';
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const register = async () => {
     const data = { username, password };
 
     try {
-      const response = await fetch('server/api/signup', {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       });
 
       if (response.ok) {
-        window.location.href = '/login';
+        navigate('/login');
       } else {
         setError('User with this username already exists');
         setUsername('');

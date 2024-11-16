@@ -16,8 +16,7 @@ function CardsPage() {
 
   const fetchCards = async () => {
     try {
-      
-      const response = await fetch(`/server/cards/${deckId}`);
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/cards/${deckId}`);
       const data = await response.json();
       setCards(data.cards);
       setDeckName(data.name);
@@ -34,7 +33,7 @@ function CardsPage() {
   const handleSubmit = async (e) => { 
     try {
       e.preventDefault(); 
-      const response = await fetch(`/server/cards/${deckId}`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/cards/${deckId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: cardQuestion, answer: cardAnswer }),
@@ -56,7 +55,7 @@ function CardsPage() {
   const handleDelete = async () => {
     const cardId = selectedId;
     try {
-      const response = await fetch(`/server/cards/${deckId}/${cardId}`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/cards/${deckId}/${cardId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
       });
@@ -75,21 +74,15 @@ function CardsPage() {
 
   return (
     <div className="cards-page">
-
-     {isModalOpen && <Modal handleDelete={handleDelete} closeModal={closeModal} />}
-
+      {isModalOpen && <Modal handleDelete={handleDelete} closeModal={closeModal} />}
 
       <Link to="/decks">
-        <img
-            className="back-button"
-            src={backIcon}
-            alt="Back"
-        />
+        <img className="back-button" src={backIcon} alt="Back" />
       </Link>
       <h1>Deck {deckName}</h1>
 
-      <div className="content-container"> {/* Основний контейнер */}
-        <div className="form-container"> {/* Контейнер для форми введення */}
+      <div className="content-container">
+        <div className="form-container">
           <form onSubmit={handleSubmit}>
             <input 
               type="text" 
@@ -110,15 +103,12 @@ function CardsPage() {
             <button type="submit" className="add-card-button">Add card</button>
           </form>
         </div>
-          {cards.length > 0 && (
-            <Link to={`/study/${deckId}`}>
+        {cards.length > 0 && (
+          <Link to={`/study/${deckId}`}>
             <button className="add-card-button">Study</button>
           </Link>
-          )}
-        <CardTable 
-          cards={cards} 
-          openModal={openModal}
-        />
+        )}
+        <CardTable cards={cards} openModal={openModal} />
       </div>
     </div>
   );

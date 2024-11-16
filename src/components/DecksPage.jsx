@@ -11,7 +11,7 @@ function DecksPage({ setAuthenticated }) {
 
   const fetchDecks = async () => {
     try {
-      const response = await fetch('server/decks');
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/decks`);
       const data = await response.json();
       setDecks(data);
     } catch (error) {
@@ -32,7 +32,7 @@ function DecksPage({ setAuthenticated }) {
   const handleSubmit = async (e) => { 
     e.preventDefault();
     try {
-      const response = await fetch('server/decks', {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/decks`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ deckname: deckName }),
@@ -54,7 +54,7 @@ function DecksPage({ setAuthenticated }) {
   const handleDelete = async () => {
     const deckId = selectedId;
     try {
-      const response = await fetch(`server/decks/${deckId}`, {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/decks/${deckId}`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
       });

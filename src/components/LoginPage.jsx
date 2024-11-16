@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import '../styles/authPages.css';
 
@@ -7,11 +8,13 @@ function LoginPage({ setAuthenticated }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const navigate = useNavigate();
+
   const login = async () => {
     const data = { username, password };
 
     try {
-      const response = await fetch('server/api/login', {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -21,7 +24,7 @@ function LoginPage({ setAuthenticated }) {
         console.log('settingAuth');
         await setAuthenticated(true);
         localStorage.setItem('authenticated', 'true');
-        window.location.href = '/decks';
+        navigate('/decks');
       } else {
         setError('Incorrect username or password');
         setUsername('');
