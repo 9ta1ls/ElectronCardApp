@@ -18,7 +18,9 @@ function LoginPage({ setAuthenticated }) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
+        credentials: 'include'
       });
+      console.log(response);
 
       if (response.ok) {
         console.log('settingAuth');

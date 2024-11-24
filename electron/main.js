@@ -14,7 +14,8 @@ function createWindow() {
         nodeIntegration: false,
         contextIsolation: false, // Змінюємо на false для спрощення
         devTools: true,
-        webSecurity: true,
+        enableRemoteModule: false,
+        webSecurity: false, 
       }
     }); 
 
@@ -55,7 +56,7 @@ function createWindow() {
     });
 
     // Перевіряємо завантаження контенту
-    mainWindow.webContents.once('did-finish-load', () => {
+   /*  mainWindow.webContents.once('did-finish-load', () => {
       mainWindow.webContents.executeJavaScript(`
         try {
           console.log('Document Ready');
@@ -73,7 +74,7 @@ function createWindow() {
       `).catch((error) => {
         console.error('Failed to execute script:', error);
       });
-    });
+    }); */
 }
 
 app.whenReady().then(createWindow);

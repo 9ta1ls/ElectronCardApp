@@ -20,7 +20,7 @@ function App() {
   
 
   return (
-    <HashRouter basename="/">
+    <HashRouter>
       <Routes>
         {!authenticated ? (
           <>

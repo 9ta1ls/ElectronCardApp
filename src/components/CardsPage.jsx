@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import CardTable from './CardTable'; 
 import '../styles/cardsPage.css';
-import backIcon from '../icons/back.png';
+import backIcon from '../assets/icons/back.png';
 import useModal from './useModal';
 import Modal from './Modal';
 

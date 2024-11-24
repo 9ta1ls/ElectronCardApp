@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import StudyCard from "./StudyCard";
 import FeedbackButtons from "./FeedbackButtons";
 import '../styles/studyPage.css';
-import backIcon from '../icons/back.png';
+import backIcon from '../assets/icons/back.png';
 
 function StudyPage() {
   const deckId = useParams().deckId;

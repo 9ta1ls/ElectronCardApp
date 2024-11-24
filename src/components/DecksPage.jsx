@@ -11,13 +11,26 @@ function DecksPage({ setAuthenticated }) {
 
   const fetchDecks = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/decks`);
+      console.log('Fetching from:', `${import.meta.env.VITE_SERVER_URL}/decks`);
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/decks`, {
+        method:'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log('Response status:', response.status, response.statusText);
+  
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} - ${response.statusText}`);
+      }
+  
       const data = await response.json();
       setDecks(data);
     } catch (error) {
-      console.error(error);
+      console.error('Fetch error:', error);
     }
   };
+  
 
   useEffect(() => {
     fetchDecks();

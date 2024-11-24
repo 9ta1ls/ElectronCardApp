@@ -1,0 +1,22 @@
+directories:
+  output: dist_electron
+  buildResources: build
+appId: com.yourapp.CardsApp
+productName: CardsApp
+files:
+  - filter:
+      - dist/**/*
+      - electron/**/*
+extraMetadata:
+  main: electron/main.js
+mac:
+  target:
+    - dmg
+    - zip
+  icon: build/icon.icns
+linux:
+  target:
+    - AppImage
+    - deb
+  icon: build/icon.png
+electronVersion: 32.1.2
